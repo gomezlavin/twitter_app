@@ -27,7 +27,7 @@ var printTweets = function(query){
       console.log(data);
       _.each(data,function(t){
         var $element = JST['templates/tweet']({value: t});
-        $("#tweet_list").append($element);
+        $("#tweet_list").prepend($element);
       });
     }
   });
@@ -36,14 +36,16 @@ var printTweets = function(query){
 $(function() {
 
   printTweets("jalapeños");
+  $('h2').html('Tweets for:  "jalapeños"');
 
   $("#search_button").on("click", function(event) {
     event.preventDefault();
-
+    $('#tweet_list').empty();
     var search = $('#search_field').val();
     if(search != ""){
-      printTweets(search);
+      printTweets("dope");
     }
+    $('#search_field').val("");
   });
 
 });

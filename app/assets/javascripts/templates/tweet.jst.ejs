@@ -1,8 +1,10 @@
 <div id="picture">
-  <%= value.user.screen_name%>
+  <img src="<%= value.user.profile_image_url %>">
 </div>
 <div id="tweet">
-
+  <h3><strong><%= value.user.name%><strong></h3>
+  <h4>@<%= value.user.screen_name%></h4>
+  <h5><%= value.text%></h5>
 </div>
-<div id="divider2"></div>
+<div id="divider2">
 
