@@ -13,10 +13,37 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require_tree ./templates
+//= require_self
 
+
+var printTweets = function(query){
+  $.ajax( "/search", {  
+    type: "get",
+    data: {
+      search: query
+    },
+    success: function(data){
+      console.log(data);
+      _.each(data,function(t){
+        var $element = JST['templates/tweet']({value: t});
+        $("#tweet_list").append($element);
+      });
+    }
+  });
+}
 
 $(function() {
 
-  
+  printTweets("jalapeños");
+
+  $("#search_button").on("click", function(event) {
+    event.preventDefault();
+
+    var search = $('#search_field').val();
+    if(search != ""){
+      printTweets(search);
+    }
+  });
 
 });

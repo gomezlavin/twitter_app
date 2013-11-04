@@ -3,11 +3,16 @@ class TweetsController < ApplicationController
     
   end
 
-  def show
-    search = params[:search]
-    @query = Twitter.search("#{search} -rt", :count => 1, :result_type => "recent").results
+  def search
+    search_query = params[:search]
+    query = Twitter.search("#{search_query} -rt", :count => 1, :result_type => "recent").results
+
+    respond_to do |format|
+      format.json {render :json => query}
+    end
   end
 
-  def fetch
-  end
 end
+
+
+
