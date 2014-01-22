@@ -1,4 +1,4 @@
-# Tweet Search Engine
+#Tweet Search Engine
 
 
 Ruby on rails app designed to search for tweets containing specific keywords and displaying them in a nice twitter-like theme.
