@@ -18,16 +18,16 @@
 
 
 var printTweets = function(query){
-  $.ajax( "/search", {  
+  $.ajax( "/search", {
     type: "get",
     data: {
       search: query
     },
     success: function(data){
-      console.log(data);
       _.each(data,function(t){
         var $element = JST['templates/tweet']({value: t});
         $("#tweet_list").prepend($element);
+        console.log(t)
       });
     }
   });
@@ -37,13 +37,13 @@ $(function() {
 
   printTweets("jalapeños");
   $('h2').html('Tweets for:  "jalapeños"');
-
   $("#search_button").on("click", function(event) {
     event.preventDefault();
     $('#tweet_list').empty();
     var search = $('#search_field').val();
     if(search != ""){
-      printTweets("dope");
+      printTweets(search);
+      $('h2').html('Tweets for:  "'+search+'"');
     }
     $('#search_field').val("");
   });
